@@ -1,18 +1,101 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { RouterModule } from '@angular/router';
+// import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+
+
+
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoginComponent } from './components/login/login.component';
+import { RegComponent } from './components/reg/reg.component';
+import { MembercreateComponent } from './components/membercreate/membercreate.component';
+import { MemberlistComponent } from './components/memberlist/memberlist.component';
+import { FarmcreateComponent } from './components/farmcreate/farmcreate.component';
+import { FarmlistComponent } from './components/farmlist/farmlist.component';
+import { UploadComponent } from './components/upload/upload.component';
+import { ProcessComponent } from './components/process/process.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { SharedsModule } from './shareds/shareds.module';
+import { ProfileComponent } from './components/profile/profile.component';
+import { SettingComponent } from './components/setting/setting.component';
+
+import { TestHComponent } from './components/test-h/test-h.component';
+
+import { SigninComponent } from './components/signin/signin.component';
+import { SignupComponent } from './components/signup/signup.component';
+import { VerifyComponent } from './components/verify/verify.component';
+
+import {AngularFireModule} from 'angularfire2'
+import {AngularFireStorageModule} from 'angularfire2/storage'
+import {AngularFireDatabaseModule} from 'angularfire2/database'
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import {AngularFirestoreModule} from 'angularfire2/firestore'
+
+// import { AngularFireDatabaseModule } from "@angular/fire/database";
+
+
+import { environment } from '../environments/environment';
+
+
+import { MemberService } from './services/member.service';
+
+/* Reactive form services in Angular 7 */
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+
+
+import { AuthService } from './services/auth.service';
+ 
+
+
+
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent,
+    RegComponent,
+    MembercreateComponent,
+    MemberlistComponent,
+    FarmcreateComponent,
+    FarmlistComponent,
+    UploadComponent,
+    ProcessComponent,
+    DashboardComponent,
+    ProfileComponent,
+    SettingComponent,
+   
+    TestHComponent,
+    SigninComponent,
+    SignupComponent,
+    VerifyComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    // AngularFireModule.initializeApp(environment.firebaseConfig),
+    // AngularFireDatabaseModule,
+    // AngularFireStorageModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireStorageModule,
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
+    AngularFirestoreModule,
+    SharedsModule,
+    RouterModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    BsDatepickerModule,
+
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
