@@ -94,10 +94,14 @@ export class VerifyComponent implements OnInit {
 
   /* Date */
   formatDate(e) {
-    var convertDate = new Date(e.target.value).toISOString().substring(0, 10);
-    this.bookForm.get('publication_date').setValue(convertDate, {
-      onlyself: true
-    })
+    var convertDate = new Date(e.target.value)
+    console.log(convertDate)
+    
+    let dateNew = convertDate.toString().split('-')
+    let day = parseInt(dateNew[2]) + 1
+    const dateStr = `${dateNew[0]}-${dateNew[1]}-${day}`
+    console.log('conver date ' , dateStr)
+    this.bookForm.get('publication_date').setValue(convertDate)
   }
 
   /* Reset form */
