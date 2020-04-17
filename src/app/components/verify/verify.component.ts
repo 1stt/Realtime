@@ -24,6 +24,8 @@ export class VerifyComponent implements OnInit {
   disShow = this.dis
   subDisShow = this.sub
 
+  
+
 
 
   constructor( public fb: FormBuilder,
@@ -60,9 +62,9 @@ export class VerifyComponent implements OnInit {
       // isbn_10: ['', [Validators.required]],
       author_name: ['', [Validators.required]],
       publication_date: ['', [Validators.required]],
-      proV: ['', [Validators.required]],
-      disV: ['', [Validators.required]],
-      subV: ['', [Validators.required]]
+      // proV: ['', [Validators.required]],
+      // disV: ['', [Validators.required]],
+      // subV: ['', [Validators.required]]
       // binding_type: ['', [Validators.required]],
       // in_stock: ['Yes'],
       // languages: [this.languageArray]
@@ -75,12 +77,23 @@ export class VerifyComponent implements OnInit {
   }
 
   /* Date */
-  formatDate(e) {
-    var convertDate = new Date(e.target.value).toISOString().substring(0, 10);
+  formatDate(event) {
+    var convertDate = new Date(event.target.value).toISOString().substring(0,10);
+    console.log(convertDate);
     this.bookForm.get('publication_date').setValue(convertDate, {
       onlyself: true
     })
   }
+
+  // updateDateAdd(publication_date){
+  //   this.bookForm.get.publication_date=publication_date;
+
+  // }
+
+  // onSelectContractDate(event) {
+  //   const firebaseDate = this.datePipe.transform(event.value, 'YYYY-MM-DD');
+  //   this.bookForm.form.get('publication_date').patchValue(firebaseDate);
+  //   }
 
   /* Reset form */
   resetForm() {
@@ -94,11 +107,11 @@ export class VerifyComponent implements OnInit {
   /* Submit book */
   submitBook() {
 
-    // var id = this.actRoute.snapshot.paramMap.get('id');
+    
 
     if (this.bookForm.valid){
       this.bookApi.AddBook(this.bookForm.value);
-      // this.router.navigate(['/memberlist']);      
+       
       this.resetForm();
     }
     console.log(5555555555)
@@ -106,5 +119,7 @@ export class VerifyComponent implements OnInit {
   // goToHome = () => {
   //   this.router.navigate(['/memberlist']);
   // }
+  // var id = this.actRoute.snapshot.paramMap.get('id');
+   // this.router.navigate(['/memberlist']);    
 
 }

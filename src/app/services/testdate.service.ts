@@ -22,9 +22,9 @@ export class TestdateService {
     
       author_name: book.author_name,
       publication_date: book.publication_date,
-      proV:book.proV,
-    disV:book.disV,
-    subV:book.subV
+    //   proV:book.proV,
+    // disV:book.disV,
+    // subV:book.subV
       // binding_type: book.binding_type,
      
     })
@@ -52,9 +52,9 @@ export class TestdateService {
     
       author_name: book.author_name,
       publication_date: book.publication_date,
-      proV:book.proV,
-      disV:book.disV,
-      subV:book.subV
+      // proV:book.proV,
+      // disV:book.disV,
+      // subV:book.subV
       // binding_type: book.binding_type,
      
     })

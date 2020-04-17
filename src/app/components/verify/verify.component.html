@@ -57,21 +57,26 @@
                         </div> -->
                         <div class="row">
                             <div class="col-sm-6">
-                                
-                                <!-- <div class="form-group"> -->
+
+                                <div class="form-group">
                                     <!-- <label for="date">วัน/เดือน/ปีเกิด</label>
                                     <input  type="text"
                                     placeholder="วันเดือนปีเกิด"
                                     class="form-control"
                                     bsDatepicker
-                                    [bsConfig]="{ isAnimated: true }" formControlName="publication_date"> -->
-                                    <label >วัน/เดือน/ปีเกิด</label>
-                                          <input class = "form-control" matInput [matDatepicker]="dateAdd" 
-                                          formControlName="publication_date"  (dateChange)="formatDate($event)">
-                                           <mat-datepicker-toggle matSuffix [for]="dateAdd"></mat-datepicker-toggle>
-                                           <mat-datepicker #dateAdd ></mat-datepicker>
-  
-                                <!-- </div> -->
+                                    [bsConfig]="{ isAnimated: true }" formControlName="publication_date" 
+                                    (dateChange)="formatDate($event)"> -->
+
+                                    
+                                <label >วัน/เดือน/ปีเกิด</label>
+                                <input class = "form-control" matInput [matDatepicker]="publication_date" 
+                                formControlName="publication_date" (dateChange)="formatDate($event)"   >
+                                 <mat-datepicker-toggle matSuffix [for]="publication_date"></mat-datepicker-toggle>
+                                 <mat-datepicker #publication_date    ></mat-datepicker>
+                                
+
+                                </div>
+
                             </div>
                             <!-- <div class="col-sm-6">
                                 <div class="form-group">
@@ -85,7 +90,7 @@
                                 </div>
                             </div> -->
                         </div>
-                        
+<!--                         
                         <div class="row">
                          
                             <div class="col-sm-6">
@@ -125,7 +130,7 @@
                                       </select>
                                 </div>
                             </div>
-                          </div>
+                          </div> -->
   
                    
                     </div>

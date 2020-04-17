@@ -5,10 +5,10 @@ export interface Book {
     author_name: string
     publication_date: Date;
 
-    proV:string;
-    disV:string;
-    subV:string;
-    
+    // proV:string;
+    // disV:string;
+    // subV:string;
+
     // binding_type: string;
    
  }
