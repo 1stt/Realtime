@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+
 import { LoginComponent } from './components/login/login.component';
 import { RegComponent } from './components/reg/reg.component';
+
 import { MembercreateComponent } from './components/membercreate/membercreate.component';
 import { MemberlistComponent } from './components/memberlist/memberlist.component';
 import { FarmcreateComponent } from './components/farmcreate/farmcreate.component';
@@ -21,12 +23,17 @@ import { VerifyComponent } from './components/verify/verify.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/reg', pathMatch: 'full'},
+  { path: '', component:  RegComponent},
   { path: 'login', component: LoginComponent},
   { path: 'reg', component: RegComponent},
   { path: 'membercreate', component: MembercreateComponent},
+  {path: 'editWiki/:id', component: MembercreateComponent},
+
   { path: 'memberlist', component: MemberlistComponent},
   { path: 'farmcreate', component: FarmcreateComponent },
+  // {path: 'editFarm/:key', component: FarmcreateComponent},
+  // { path: 'edit-book/:id', component: FarmcreateComponent },
+
   { path: 'farmlist', component: FarmlistComponent},
   { path: 'upload', component: UploadComponent},
   { path: 'process', component: ProcessComponent},
@@ -39,7 +46,7 @@ const routes: Routes = [
 
   { path: 'sign-in', component: SigninComponent},
   { path: 'register-user', component: SignupComponent },
-  { path: 'verify-email-address', component: VerifyComponent },
+  { path: 'ver', component: VerifyComponent },
  
 
 

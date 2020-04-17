@@ -11,11 +11,13 @@ import { AuthService } from 'src/app/services/auth.service';
 export class AuthNavComponent implements OnInit {
 
   constructor(
-    // private auths:AuthService,
+    private auth:AuthService,
     // private router:Router
     ) { }
   ngOnInit(): void {
   }
-
+ onLogout(){
+   this.auth.signOut()
+ }
   
 }

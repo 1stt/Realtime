@@ -10,5 +10,6 @@ export class Upload {
   imgname:string;
 
 
+
   
  }

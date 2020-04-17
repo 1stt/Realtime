@@ -6,10 +6,10 @@
             <h1><i class="fa fa-dashboard"></i>รายการสมาชิก</h1>
             <p>Start a beautiful journey here</p>
           </div>
-          <ul class="app-breadcrumb breadcrumb">
+          <!-- <ul class="app-breadcrumb breadcrumb">
             <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
             <li class="breadcrumb-item"><a href="#">Blank Page</a></li>
-          </ul>
+          </ul> -->
         </div>
         <div class="row">
           <div class="col-md-12">
@@ -36,14 +36,14 @@
                 <tr *ngFor="let member of members">
                     
                 
-                <td>{{member.name}}    {{member.lastname}}</td>
-                <td>{{member.username}}</td>
-                <td>{{member.email}}</td>
-                <td>{{member.phone}}</td>
-                <td>{{member.date}}</td>
+                <td>{{member.value.name}}    {{member.value.lastname}}</td>
+                <td>{{member.value.username}}</td>
+                <td>{{member.value.email}}</td>
+                <td>{{member.value.phone}}</td>
+                <td>{{member.value.date}}</td>
                 <td>
-                  <!-- <button type="button" (click)="editDetailUser(data)" >Edit</button>
-                    <button type="button" (click)="delDetailUser(data)" >Delete</button> -->
+                  <button type="button" (click)="editWiki(member)" >Edit</button>
+                    <button type="button" (click)="delWiki(member)" >Delete</button>
                  </td>
   
                 </tr>

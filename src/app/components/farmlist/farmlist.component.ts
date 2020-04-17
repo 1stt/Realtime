@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FarmService } from 'src/app/services/farm.service';
 import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { Farm } from 'src/app/models/farm';
 
 
 @Component({
@@ -12,7 +14,9 @@ export class FarmlistComponent implements OnInit {
 
   farms:any;
 
-  constructor(private farmService: FarmService) { }
+  @Input() farm:Farm;
+  constructor(private farmService: FarmService,
+    public router: Router) { }
 
   ngOnInit(){
     this.getCustomersList();
@@ -31,9 +35,23 @@ export class FarmlistComponent implements OnInit {
     });
   }
 
-  deleteCustomers() {
-    this.farmService.deleteAll().catch(err => console.log(err));
+  deleteCustomer() {
+    this.farmService
+      .deleteCustomer(this.farm.key)
+      .catch(err => console.log(err));
   }
+
+  editFarm() {
+    this.router.navigate([`/editFarm/${this.farms.key}`]);
+  }
+
+  // updateActive() {
+  //   this.farmService
+  //     .updateCustomer(this.farms.key,this.farms)
+  //     .catch(err => console.log(err));
+  //     this.router.navigate([`/editFarm/${this.farms.key}`]);
+
+  // }
 
 
 }

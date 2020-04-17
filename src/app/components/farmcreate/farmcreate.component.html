@@ -4,10 +4,10 @@
           <h1><i class="fa fa-dashboard"></i>เพิ่มฟาร์ม</h1>
       
         </div>
-        <ul class="app-breadcrumb breadcrumb">
+        <!-- <ul class="app-breadcrumb breadcrumb">
           <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
           <li class="breadcrumb-item"><a href="#">Blank Page</a></li>
-        </ul>
+        </ul> -->
       </div>
         <!-- ส่วนฟอร์ม -->
         <div class="row">
@@ -35,61 +35,75 @@
                         </div>
 
                         <div class="row">
-                            <!-- <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="dateGrowth">วันที่เริ่มปลูก</label>
-                                    <input  type="text" placeholder="วันที่เริ่มปลูก" class="form-control" bsDatepicker 
-                                    [bsConfig]="{ adaptivePosition: true }"  name="dateGrowth" ngModel [(ngModel)]="farm.dateGrowth">
-                                </div>
-                            </div> -->
+                         
                             <div class="col-sm-6">
                                 <div class="form-group" >
-                                    <label for="province">จังหวัด</label>
-                                    <select class = "form-control" id="provinceThai" (change)="findSubDistricts($event)" 
-                                   
-                                  >
+                                    <label >จังหวัด</label>
+                                    <select class = "form-control" id="provinceThai" (change)="findDistricts($event)" >
                                         <option *ngIf = "disShow == null"></option>
                                         <option *ngFor="let pro of pro" value={{pro.PROVINCE_ID}} >{{pro.PROVINCE_NAME}}</option>
                                       </select>
                                         <!-- <input class = "form-control" type="text" name="province" ngModel [(ngModel)]="detailFarm.province"> -->
                                       
-
-                                   
                                 </div>
                             </div>
-                           
-                        </div>
-                        <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label for="district">อำเภอ</label>
-                                    <select class = "form-control" id="subDistrictThai" (change)="findSubDistricts($event)" 
-                                   
-                                  >
+                                    <label >อำเภอ</label>
+                                    <select class = "form-control" id="subDistrictThai" (change)="findSubDistricts($event)" >
                                         <option *ngIf = "subDisShow == null"></option>
                                         <option *ngFor="let disshow of disShow" value={{disshow.DISTRICT_ID}} >{{disshow.DISTRICT_NAME}}</option>
                                       </select>
                                     <!-- <input class = "form-control" type="text" name="district" ngModel [(ngModel)]="detailFarm.district"> -->
                                 </div>
                             </div>
+                           
+                           
+                        </div>
+                        <div class="row">
+                           
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label for="subdistrict">ตำบล</label>
-                                    <select class = "form-control" id="subDistrictThai" 
-                                    
-                                    >
-                                        <option *ngFor="let sub of subDisShow" value={{sub.SUB_DISTRICT_NAME}} >{{sub.SUB_DISTRICT_NAME}}</option>
+                                    <label>ตำบล</label>
+                                    <select class = "form-control" id="subDistrictThai"    >
+                                        <option *ngFor="let sub of subDisShow" value={{sub.SUB_DISTRICT_NAME}}  >{{sub.SUB_DISTRICT_NAME}} </option>
                                       </select>
-                                    <!-- <input class = "form-control" type="text" name="subdistrict" ngModel [(ngModel)]="detailFarm.subdistrict"> -->
+                                    <!-- <input class = "form-control" type="text" name="subdistrict" ngModel [(ngModel)]="farm.subdistrict"> -->
                                 </div>
                             </div>
                           
                             <div class="col-sm-6">
+                              
+
+                                <div class="row">
+
+                                    <div class="col">
+                                        <label for="size">ขนาดฟาร์ม</label>
+
+                                      <input style="text-align:right;padding-right:2px;" name="sizeF" ngModel [(ngModel)]="farm.sizeF" type="text" class="form-control" placeholder="ไร่">
+                                    </div>
+                                    <div class="col">
+                                        <label for="size">.</label>
+
+                                      <input style="text-align:right;padding-right:2px;" name="size"pattern="[0-4]{1}"  ngModel [(ngModel)]="farm.size" type="text" class="form-control" placeholder="งาน">
+                                    </div>
+                                  </div>
+                                
+                            </div>
+
+                            <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label for="size">ขนาดฟาร์ม</label>
-                                    <input class = "form-control" type="text" name="size" ngModel [(ngModel)]="farm.size">
+                                    <label >วันที่เริ่มปลูก</label>
+                                        <input class = "form-control" matInput [matDatepicker]="dateAdd">
+                                         <mat-datepicker-toggle matSuffix [for]="dateAdd"></mat-datepicker-toggle>
+                                         <mat-datepicker #dateAdd ></mat-datepicker>
+                                    <!-- <label for="dateGrowth">วันที่เริ่มปลูก</label>
+                                    <input  type="text" placeholder="วันที่เริ่มปลูก" class="form-control" bsDatepicker 
+                                    [bsConfig]="{ adaptivePosition: true }"  name="dateGrowth" ngModel [(ngModel)]="farm.dateGrowth"> -->
                                 </div>
                             </div>
+
+                          
                            
                           
                         </div>

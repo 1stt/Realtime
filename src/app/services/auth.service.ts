@@ -145,7 +145,7 @@ export class AuthService {
       return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
       .then((user) => {
         this.authState = user
-        this.SendVerificationMail();
+        // this.SendVerificationMail();
 
         this.updateUserData()
         this.zone.run(() => {
@@ -176,8 +176,8 @@ export class AuthService {
       this.afAuth.authState.subscribe(auth => {
         if (auth) {
           this.zone.run(() => {
-            // console.log(55555555555)
-            this.router.navigate(['/']);
+            console.log(55555555555)
+            // this.router.navigate(['/']);
         });
         }
       });

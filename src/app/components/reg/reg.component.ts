@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, FormControl, NgForm } from '@angular/forms';
-import { AuthService } from 'src/app/services/auth.service';
 
 // import { MemberService } from 'src/app/services/member.service';
 // import { Member } from 'src/app/models/member';
 // import { AngularFireList } from 'angularfire2/database';
 import { ValidateService } from 'src/app/services/validate.service';
 import { RegService } from 'src/app/services/reg.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { TestauthService } from 'src/app/services/testauth.service';
+
 
 @Component({
   selector: 'app-reg',
@@ -30,7 +32,7 @@ export class RegComponent implements OnInit {
 
   constructor(
     public reg:RegService,
-    public auth: AuthService,
+    public auth: TestauthService,
     // public memberservice:MemberService,
     private builder: FormBuilder,
     private router: Router,

@@ -8,5 +8,6 @@ export class Member {
     phone: string;
     imgUrl:string;
     imgname:string;
+    date:Date;
    
 }

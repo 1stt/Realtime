@@ -21,14 +21,46 @@
                             <img src="assets/image/user.png" class="img-fluid img-thumbnail">
                         </div>
                         <div class="file">
-                            <label class="file-label">
+                            <label for ="fileUpload"class="file-label">
                     
-                            <input class="file-input" type="file" (change)="startUpload($event.target.files)">
+                            <input id = "fileUpload " class="file-input" type="file" (change)="startUpload($event.target.files)">
                     
                           
                             </label>
                           </div>
+                          <div *ngIf="uploadPercentage$ | async as pct">
+                              <progress class="progress is-info" 
+                                  [value]="pct" 
+                                  max="100">        
+                        </progress>
+                      
+                        {{ pct | number }}%
+                       
+                          </div>
                     </div>
+
+                    <!-- <div *ngIf="percentage | async as pct">
+
+                        <progress class="progress is-info" 
+                                  [value]="pct" 
+                                  max="100">        
+                        </progress>
+                      
+                        {{ pct | number }}%
+                      
+                      </div>
+                      
+                      
+                      <div *ngIf="(snapshot | async) as snap">
+                        {{ snap.bytesTransferred | fileSize }} of {{ snap.totalBytes | fileSize }} 
+                      
+                      
+                      <div *ngIf="downloadURL | async as url">
+                        <h3>Results!</h3>
+                        <img [src]="url"><br>
+                        <a [href]="url" target="_blank" rel="noopener">Download Me!</a>
+                      </div> 
+                    </div>  -->
                     <div class="col-sm-6">
                         <!-- <div class="form-group">
                             <label for="email">อีเมล์</label>
@@ -64,17 +96,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-6">
-                                
-                                <!-- <div class="form-group">
-                                    <label for="age">วัน/เดือน/ปีเกิด</label>
-                                    <input  type="text"
-                                    placeholder="วันเดือนปีเกิด"
-                                    class="form-control"
-                                    bsDatepicker
-                                    [bsConfig]="{ isAnimated: true }" name="date"  ngModel [(ngModel)]="member.date">
-                                </div> -->
-                            </div>
+                           
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="phone">เบอร์โทร</label>
@@ -86,6 +108,26 @@
                                         </div>
                                 </div>
                             </div>
+
+                            <div class="col-sm-6">
+                                
+                                <div class="form-group">
+                                    <!-- <mat-form-field>
+                                        <mat-label>วันที่เริ่มปลูก</mat-label>
+                                        <input class = "form-control" matInput [matDatepicker]="picker">
+                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker></mat-datepicker>
+                                      </mat-form-field> -->
+                                      <!-- <mat-form-field>  -->
+                                          <label >วัน/เดือน/ปีเกิด</label>
+                                        <input class = "form-control" matInput [matDatepicker]="dateAdd"
+                                       >
+                                         <mat-datepicker-toggle matSuffix [for]="dateAdd"></mat-datepicker-toggle>
+                                         <mat-datepicker #dateAdd ></mat-datepicker>
+                                        <!-- </mat-form-field> -->
+                                   
+                                </div>
+                            </div>
                         </div>
 
                    
@@ -94,7 +136,7 @@
 
                 <hr>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary">
+                    <button  type="submit" class="btn btn-primary">
                         <i class="fa fa-save"></i> บันทึกข้อมูลโปรไฟล์
                     </button>
                     <!-- <button (click)="CalculateAge()">Calculate Age</button> -->
@@ -116,10 +158,14 @@
     <th>Image</th>
     <th>Fistname</th>
     <th>Lastname</th>
-    <th>Email</th>
-    <th>Course</th>
+    <th>username</th>
+    <th>email</th>
+    <th>phone</th>
+
     <th>Date-Time</th>
-    <th>Payment</th>
+    <th>Date</th>
+
+
     <th>Action</th>
     </tr>
     </thead>
@@ -129,10 +175,14 @@
     <td><img src="{{item.payload.val().imageUrl}}" height="50px"></td>
     <td>{{item.payload.val().name}}</td>
     <td>{{item.payload.val().lastname}}</td>
-    <td>{{item.payload.val().email}}</td>
     <td>{{item.payload.val().username}}</td>
-    <td>{{item.payload.val().timestamp | date: 'dd/MM/yyyy - HH:mm'}}</td>
+
     <td>{{item.payload.val().email}}</td>
+    <td>{{item.payload.val().phone}}</td>
+
+    <td>{{item.payload.val().timestamp | date: 'dd/MM/yyyy - HH:mm'}}</td>
+    <td>{{item.payload.val().date}}</td>
+
     <td style="text-align: center">
     <button (click)="onClickDelete(item)" type="button" class="btn btn-danger">DEL</button>
     <!-- <button (click)="onClickPayment(item)" type="button" class="btn btn-success">PAY</button> -->

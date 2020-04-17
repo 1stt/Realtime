@@ -1,34 +1,153 @@
-<div class="displayTable">
-    <div class="displayTableCell">
-  
-      <div class="px-logo">
-        <a href="https://www.positronx.io" target="_blank">
-          <img src="https://www.positronx.io/wp-content/themes/positronx/img/logo-positronx-white.svg" alt="positronX.io - Learn Full Stack Development">
-        </a>
-      </div>
-  
-      <div class="authBlock">
-        <h3>Thank You for Registering</h3>
-  
-        <div class="formGroup" *ngIf="authService.userData as user">
-          <p class="text-center">We have sent a confirmation email to <strong>{{user.email}}</strong>.</p>
-          <p class="text-center">Please check your email and click on the link to verfiy your email address.</p>
+<app-auth-content>
+    <div class="app-title">
+        <div>
+          <h1><i class="fa fa-dashboard"></i>เพิ่มสมาชิก</h1>
+      
         </div>
+        <!-- <ul class="app-breadcrumb breadcrumb">
+          <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+          <li class="breadcrumb-item"><a href="#">Blank Page</a></li>
+        </ul> -->
+      </div>
+        <!-- ส่วนฟอร์ม -->
+        <div class="row">
+            <div class="col-md-12">
+              <div class="tile">
+        <div class="tile-body">
+          <form [formGroup]="bookForm" (ngSubmit)="submitBook()" >
+            <div class="row">
+                    <!-- <div class="col-sm-4">
+                        <div class="form-group">
+                            <img src="assets/image/user.png" class="img-fluid img-thumbnail">
+                        </div>
+                        <div class="form-group">
+                            <input type="file">
+                        </div>
+                    </div> -->
+                    <div class="col-sm-6">
+                       
   
-        <!-- Calling SendVerificationMail() method using authService Api -->
-        <div class="formGroup">
-          <button type="button" class="btn btnPrimary" (click)="authService.SendVerificationMail()">
-            <i class="fas fa-redo-alt"></i>
-            Resend Verification Email
-          </button>
+                        <div class="row">
+                            <div class="col-sm-6">
+                               
+                                    <label for="name">ชื่อ</label>
+                                    <input class = "form-control" type="text"  formControlName="book_name">
+                        
+                            </div>
+                            <div class="col-sm-6">
+                                <!-- <div class="form-group"> -->
+                                    <label for="lastname">นามสกุล</label>
+                                    <input class = "form-control" type="text" formControlName="author_name">
+                                <!-- </div> -->
+                            </div>
+                        </div>
+                        <!-- <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="username">Username</label>
+                                    <input class = "form-control" type="text"  formControlName="book_name">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input class = "form-control" type="email"formControlName="book_name">
+                                </div>
+                            </div>
+                        </div> -->
+                        <div class="row">
+                            <div class="col-sm-6">
+                                
+                                <!-- <div class="form-group"> -->
+                                    <!-- <label for="date">วัน/เดือน/ปีเกิด</label>
+                                    <input  type="text"
+                                    placeholder="วันเดือนปีเกิด"
+                                    class="form-control"
+                                    bsDatepicker
+                                    [bsConfig]="{ isAnimated: true }" formControlName="publication_date"> -->
+                                    <label >วัน/เดือน/ปีเกิด</label>
+                                          <input class = "form-control" matInput [matDatepicker]="dateAdd" 
+                                          formControlName="publication_date"  (dateChange)="formatDate($event)">
+                                           <mat-datepicker-toggle matSuffix [for]="dateAdd"></mat-datepicker-toggle>
+                                           <mat-datepicker #dateAdd ></mat-datepicker>
+  
+                                <!-- </div> -->
+                            </div>
+                            <!-- <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="phone">เบอร์โทร</label>
+                                    <input style="text-align:right;padding-right:2px;" class = "form-control" type="tel" id="phone"
+                                 placeholder="1234567890" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" required
+                                   formControlName="book_name">
+                                    <div class="invalid-feedback">
+                                        กรุณากรอกเบอร์มือถือตัวเลข 10 หลัก
+                                        </div>
+                                </div>
+                            </div> -->
+                        </div>
+                        
+                        <div class="row">
+                         
+                            <div class="col-sm-6">
+                                <div class="form-group" >
+                                    <label >จังหวัด</label>
+                                    <select class = "form-control" id="provinceThai" (change)="findDistricts($event)" 
+                                    formControlName="proV" >
+                                        <option *ngIf = "disShow == null"></option>
+                                        <option *ngFor="let pro of pro" value={{pro.PROVINCE_ID}}    >{{pro.PROVINCE_NAME}}</option>
+                                      </select>
+                                        
+                                      
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label >อำเภอ</label>
+                                    <select class = "form-control" id="subDistrictThai" (change)="findSubDistricts($event)" 
+                                    formControlName="disV" >
+                                        <option *ngIf = "subDisShow == null"></option>
+                                        <option *ngFor="let disshow of disShow"  value={{disshow.DISTRICT_ID}} >{{disshow.DISTRICT_NAME}}</option>
+                                      </select>
+                                   
+                                </div>
+                            </div>
+                           
+                           
+                        </div>
+                        <div class="row">
+                           
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>ตำบล</label>
+                                    <select class = "form-control" id="subDistrictThai"  
+                                    formControlName="subV"   >
+                                        <option *ngFor="let sub of subDisShow" value={{sub.SUB_DISTRICT_NAME}}  >{{sub.SUB_DISTRICT_NAME}} </option>
+                                      </select>
+                                </div>
+                            </div>
+                          </div>
+  
+                   
+                    </div>
+                </div>
+  
+                <hr>
+                <!-- <div class="form-group"> -->
+                    <button type="submit" class="btn btn-primary"  >
+                        <i class="fa fa-save"></i> บันทึกข้อมูลโปรไฟล์
+                    </button>
+                    <!-- <button (click)="CalculateAge()">Calculate Age</button> -->
+                <!-- </div> -->
+            </form>
+  
+          
+  
         </div>
-  
-      </div>
-  
-      <div class="redirectToLogin">
-        <span>Go back to?<span class="redirect" routerLink="/sign-in"> Sign in</span></span>
-      </div>
-  
     </div>
+     
   </div>
-  
+     
+  </div>
+     
+     
+  </app-auth-content>
