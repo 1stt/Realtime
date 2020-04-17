@@ -24,6 +24,10 @@ export class VerifyComponent implements OnInit {
   disShow = this.dis
   subDisShow = this.sub
 
+  globalProvince: any
+  globalDistrict: any
+  globalSubDistrict: any
+
 
 
   constructor( public fb: FormBuilder,
@@ -43,6 +47,10 @@ export class VerifyComponent implements OnInit {
     })
     console.log(result)
     this.disShow = result
+    this.globalProvince =  this.pro.filter( (provinceName) => {
+      return provinceName.PROVINCE_ID == event.target.value
+    })
+    console.log('global province' , this.globalProvince)
   }
 
   findSubDistricts(event) {
@@ -52,7 +60,17 @@ export class VerifyComponent implements OnInit {
     })
     console.log(result)
     this.subDisShow = result
+    this.globalDistrict =  this.dis.filter( (disName) => {
+      return disName.DISTRICT_ID == event.target.value
+    })
+    console.log('global district' , this.globalDistrict)
   }
+
+  changeGlobalSubdistrict(event) {
+    this.globalSubDistrict = event.target.value
+    console.log('global subdistrict ', this.globalSubDistrict)
+  }
+
   /* Reactive book form */
   submitBookForm() {
     this.bookForm = this.fb.group({
@@ -93,12 +111,11 @@ export class VerifyComponent implements OnInit {
 
   /* Submit book */
   submitBook() {
-
     // var id = this.actRoute.snapshot.paramMap.get('id');
 
     if (this.bookForm.valid){
       this.bookApi.AddBook(this.bookForm.value);
-      // this.router.navigate(['/memberlist']);      
+      // this.router.navigate(['/memberlist']);    
       this.resetForm();
     }
     console.log(5555555555)

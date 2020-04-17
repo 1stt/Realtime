@@ -120,7 +120,7 @@
                                 <div class="form-group">
                                     <label>ตำบล</label>
                                     <select class = "form-control" id="subDistrictThai"  
-                                    formControlName="subV"   >
+                                    formControlName="subV"   (change) = "changeGlobalSubdistrict($event)">
                                         <option *ngFor="let sub of subDisShow" value={{sub.SUB_DISTRICT_NAME}}  >{{sub.SUB_DISTRICT_NAME}} </option>
                                       </select>
                                 </div>
